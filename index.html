@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bleitor | Soluciones Logísticas de Vanguardia en Mendoza</title>
+    <title>Bleitor | Logística Industrial Inteligente</title>
     
     <!-- Meta SEO -->
-    <meta name="description" content="Bleitor - Conectamos la industria del Gran Mendoza con logística inteligente, tecnología y automatización avanzada. Fundado por Maximo Gomez Saa y Pablo Carrasco Galdame.">
-    <meta name="keywords" content="logistica mendoza, transporte gran mendoza, bleitor logistica, maximo gomez saa, pablo carrasco galdame, automatizacion logistica">
+    <meta name="description" content="Bleitor - Logística de vanguardia y automatización de transporte en el Gran Mendoza. Soluciones industriales directas y rápidas.">
+    <meta name="keywords" content="logistica mendoza, transporte industrial mendoza, bleitor logistica, pablo carrasco galdame, maximo gomez saa">
     
+    <!-- Favicon: Mini Logo SVG en Data URL (Camión Moderno en Cian) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2348cae4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2'%3E%3C/path%3E%3Cpath d='M19 18h2a1 1 0 0 0 1-1v-5.14a1 1 0 0 0-.293-.707l-3.86-3.86A1 1 0 0 0 17.14 7H14'%3E%3C/path%3E%3Ccircle cx='7.5' cy='18.5' r='2.5'%3E%3C/circle%3E%3Ccircle cx='18.5' cy='18.5' r='2.5'%3E%3C/circle%3E%3C/svg%3E">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -17,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Iconos Lucide (vía script para dinamismo moderno) -->
+    <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -30,12 +33,11 @@
                     },
                     colors: {
                         brand: {
-                            navy: '#0b132b',
-                            darkBlue: '#1c2541',
-                            electricBlue: '#3a86c8',
-                            cyan: '#48cae4',
-                            glowCyan: '#00f5ff',
-                            lightSlate: '#e2e8f0',
+                            navy: '#030712',
+                            darkBlue: '#0b1528',
+                            electricBlue: '#2563eb',
+                            cyan: '#06b6d4',
+                            glowCyan: '#22d3ee',
                         }
                     }
                 }
@@ -50,501 +52,591 @@
             color: #f3f4f6;
             overflow-x: hidden;
         }
-        
+
         .font-display {
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Micro-animaciones y efectos de cristal */
+        /* Glassmorphism & Neon Shadows */
         .glass-panel {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(10, 17, 32, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .neon-border-glow {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .neon-text-glow {
+            text-shadow: 0 0 10px rgba(34, 211, 238, 0.5);
+        }
+
+        .neon-line-glow {
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.8);
+        }
+
+        /* Camino de Luces (Wizard Step Indicator) */
+        .step-node {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .step-node.active {
+            background: #06b6d4;
+            box-shadow: 0 0 20px #06b6d4, 0 0 40px rgba(6, 182, 212, 0.4);
+            border-color: #22d3ee;
+            transform: scale(1.15);
+        }
+
+        .step-node.completed {
+            background: #2563eb;
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.6);
+            border-color: #3b82f6;
+        }
+
+        /* Glow effects inputs */
+        .glow-input:focus {
+            outline: none;
+            border-color: #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+        }
+
+        /* Choice Cards in Form */
+        .choice-card {
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .glass-card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .choice-card:hover {
+            border-color: rgba(6, 182, 212, 0.3);
+            background: rgba(11, 21, 40, 0.6);
+            transform: translateY(-2px);
         }
 
-        .glass-card-hover:hover {
-            transform: translateY(-4px);
-            border-color: rgba(58, 134, 200, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(58, 134, 200, 0.2);
+        .choice-card.selected {
+            background: rgba(6, 182, 212, 0.08);
+            border-color: #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
         }
 
-        .glow-button {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .glow-button:hover {
-            box-shadow: 0 0 20px rgba(72, 202, 228, 0.6);
-            transform: scale(1.02);
-        }
-
-        .glow-input:focus {
-            outline: none;
-            border-color: #3a86c8;
-            box-shadow: 0 0 12px rgba(58, 134, 200, 0.3);
-        }
-
-        /* Fondo decorativo difuminado */
+        /* Blobs decorativos en el fondo */
         .bg-blob-1 {
-            filter: blur(120px);
-            background: radial-gradient(circle, rgba(58, 134, 200, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(140px);
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
         }
 
         .bg-blob-2 {
-            filter: blur(120px);
-            background: radial-gradient(circle, rgba(72, 202, 228, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(140px);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+
+        /* Animación Fade In */
+        .step-content {
+            display: none;
+            animation: fadeIn 0.5s forwards ease-out;
+        }
+
+        .step-content.active-step {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
-<body class="min-h-screen relative font-sans">
+<body class="min-h-screen relative overflow-x-hidden bg-brand-navy selection:bg-brand-cyan/20">
 
     <!-- Blobs decorativos en el fondo -->
-    <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blob-1 rounded-full -z-10 pointer-events-none"></div>
-    <div class="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-blob-2 rounded-full -z-10 pointer-events-none"></div>
+    <div class="absolute top-10 left-1/4 w-[600px] h-[600px] bg-blob-1 rounded-full -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-20 right-1/4 w-[700px] h-[700px] bg-blob-2 rounded-full -z-10 pointer-events-none"></div>
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header class="sticky top-0 z-50 glass-panel border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center shadow-lg shadow-brand-electricBlue/20">
-                    <i data-lucide="truck" class="text-slate-900 w-5 h-5 stroke-[2.5]"></i>
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center shadow-lg shadow-brand-cyan/25">
+                    <i data-lucide="truck" class="text-brand-navy w-5 h-5 stroke-[2.5]"></i>
                 </div>
-                <span class="font-display font-extrabold text-2xl tracking-wider text-white">BLEITOR</span>
+                <div class="flex flex-col">
+                    <span class="font-display font-extrabold text-2xl tracking-wider text-white leading-none">BLEITOR</span>
+                    <span class="text-[9px] text-brand-cyan tracking-[0.2em] font-bold uppercase mt-0.5">Mendoza Logistics</span>
+                </div>
             </div>
             
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-                <a href="#inicio" class="text-gray-300 hover:text-brand-cyan transition">Inicio</a>
-                <a href="#nosotros" class="text-gray-300 hover:text-brand-cyan transition">Identidad</a>
-                <a href="#soluciones" class="text-gray-300 hover:text-brand-cyan transition">Servicios</a>
-                <a href="#contacto" class="px-5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-brand-electricBlue text-white hover:text-brand-cyan transition-all">Solicitar Cotización</a>
-            </nav>
-            
-            <!-- Mobile Menu Toggle Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
+            <div class="flex items-center space-x-6">
+                <!-- Teléfono Directo -->
+                <a href="https://wa.me/5492617094195" target="_blank" class="hidden sm:flex items-center space-x-2 text-xs font-semibold text-gray-400 hover:text-brand-cyan transition-colors">
+                    <i data-lucide="phone-call" class="w-4 h-4 text-brand-cyan"></i>
+                    <span>+54 9 261 709-4195</span>
+                </a>
+                <a href="#camino" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-electricBlue to-brand-cyan text-white hover:opacity-90 font-semibold text-sm tracking-wide shadow-lg shadow-brand-electricBlue/20 transition-all">
+                    Iniciar Cotización
+                </a>
             </div>
-        </div>
-        
-        <!-- Mobile Dropdown Nav -->
-        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-gray-800 px-4 py-4 space-y-3">
-            <a href="#inicio" class="block text-gray-300 hover:text-brand-cyan transition text-base font-medium py-2">Inicio</a>
-            <a href="#nosotros" class="block text-gray-300 hover:text-brand-cyan transition text-base font-medium py-2">Identidad</a>
-            <a href="#soluciones" class="block text-gray-300 hover:text-brand-cyan transition text-base font-medium py-2">Servicios</a>
-            <a href="#contacto" class="block text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-electricBlue to-brand-cyan text-slate-950 font-bold text-base transition">Solicitar Cotización</a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative pt-16 pb-20 lg:pt-24 lg:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <!-- Hero Copywriting -->
-            <div class="lg:col-span-7 space-y-6 text-left">
-                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-electricBlue/10 border border-brand-electricBlue/20 text-brand-cyan text-xs font-semibold uppercase tracking-wider">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
-                    <span>Gran Mendoza, Argentina</span>
-                </div>
-                <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
-                    Logística Inteligente y de <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan via-brand-electricBlue to-blue-400">Vanguardia</span>
-                </h1>
-                <p class="text-gray-400 text-lg leading-relaxed max-w-2xl">
-                    Somos la nueva generación logística del oeste argentino. Optimizamos e integramos tecnología avanzada, automatización de datos y operaciones dinámicas para conectar tu industria con soluciones rápidas, seguras y de escala profesional.
-                </p>
-                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                    <a href="#contacto" class="glow-button px-8 py-4 rounded-xl bg-gradient-to-r from-brand-electricBlue to-brand-cyan text-slate-950 font-bold text-center flex items-center justify-center space-x-2">
-                        <span>Iniciar Solicitud</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5 stroke-[2.5]"></i>
-                    </a>
-                    <a href="#soluciones" class="px-8 py-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-gray-300 hover:text-white transition text-center font-medium">
-                        Conocer Servicios
-                    </a>
-                </div>
+    <!-- Hero / Presentación Corta -->
+    <section class="max-w-7xl mx-auto px-6 pt-16 pb-12 lg:pt-24 lg:pb-16 text-center">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs font-semibold uppercase tracking-wider">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                <span>Logística Industrial Avanzada</span>
             </div>
-
-            <!-- Hero Image / Visual Representation -->
-            <div class="lg:col-span-5 relative flex justify-center">
-                <!-- Abstract Premium UI Box -->
-                <div class="w-full max-w-md glass-panel p-6 rounded-2xl border border-slate-800 shadow-2xl relative">
-                    <div class="absolute -top-4 -right-4 w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-400 to-brand-electricBlue opacity-50 blur-lg"></div>
-                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
-                        <span class="text-xs text-gray-500 font-mono">STATUS_ENGINE // ONLINE</span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    </div>
-                    <div class="space-y-4 pt-4">
-                        <div class="flex items-center space-x-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800/80">
-                            <i data-lucide="zap" class="text-brand-cyan w-5 h-5"></i>
-                            <div>
-                                <h4 class="text-sm font-semibold text-white">Despacho Automatizado</h4>
-                                <p class="text-xs text-gray-400">Rutas optimizadas mediante algoritmo local.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800/80">
-                            <i data-lucide="shield-check" class="text-brand-electricBlue w-5 h-5"></i>
-                            <div>
-                                <h4 class="text-sm font-semibold text-white">Monitoreo Activo</h4>
-                                <p class="text-xs text-gray-400">Integración de alertas directas a socios.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800/80">
-                            <i data-lucide="trending-up" class="text-brand-cyan w-5 h-5"></i>
-                            <div>
-                                <h4 class="text-sm font-semibold text-white">Gran Mendoza & Alrededores</h4>
-                                <p class="text-xs text-gray-400">Cobertura express e industrial en toda la región.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <!-- Brand Identity & Founders Section -->
-    <section id="nosotros" class="py-20 bg-slate-950/40 border-y border-slate-900 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
-            <div class="lg:col-span-5 order-2 lg:order-1 grid grid-cols-2 gap-4">
-                <!-- Founder Card Maximo -->
-                <div class="glass-panel p-5 rounded-2xl border border-slate-850 flex flex-col justify-between min-h-[180px]">
-                    <div class="w-10 h-10 rounded-lg bg-brand-electricBlue/10 flex items-center justify-center text-brand-cyan mb-4">
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-display font-bold text-white text-base">Maximo Gomez Saa</h4>
-                        <p class="text-xs text-brand-cyan uppercase tracking-wider font-semibold">Fundador & CTO</p>
-                    </div>
-                </div>
-                <!-- Founder Card Pablo -->
-                <div class="glass-panel p-5 rounded-2xl border border-slate-850 flex flex-col justify-between min-h-[180px] lg:mt-8">
-                    <div class="w-10 h-10 rounded-lg bg-brand-cyan/10 flex items-center justify-center text-brand-cyan mb-4">
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-display font-bold text-white text-base">Pablo Carrasco Galdame</h4>
-                        <p class="text-xs text-brand-cyan uppercase tracking-wider font-semibold">Fundador & COO</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
-                <div class="inline-flex items-center space-x-2 text-brand-cyan text-sm font-semibold tracking-wider uppercase">
-                    <span class="w-6 h-0.5 bg-brand-cyan"></span>
-                    <span>Nuestra Identidad</span>
-                </div>
-                <h2 class="font-display font-bold text-3xl sm:text-4xl text-white">
-                    Emprendimiento Tecnológico en Constante Evolución
-                </h2>
-                <p class="text-gray-400 leading-relaxed">
-                    Nacemos en Mendoza con un propósito claro: redefinir los flujos logísticos locales mediante el uso inteligente de datos. Bleitor no es solo transporte; es la integración de plataformas a medida, automatización e infraestructura moderna orientada a la excelencia operacional.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-start space-x-3">
-                        <i data-lucide="check" class="text-brand-cyan w-5 h-5 shrink-0 mt-0.5"></i>
-                        <p class="text-gray-300 text-sm"><strong class="text-white">Conexión Directa:</strong> Eliminamos las fricciones burocráticas tradicionales mediante canales ágiles e interactivos.</p>
-                    </div>
-                    <div class="flex items-start space-x-3">
-                        <i data-lucide="check" class="text-brand-cyan w-5 h-5 shrink-0 mt-0.5"></i>
-                        <p class="text-gray-300 text-sm"><strong class="text-white">Automatización de Vanguardia:</strong> Cada pedido procesado activa notificaciones instantáneas y optimizaciones inmediatas para el equipo.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Services / Soluciones Section -->
-    <section id="soluciones" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">
-                Servicios Logísticos Inteligentes
-            </h2>
-            <p class="text-gray-400">
-                Soluciones diseñadas para optimizar la cadena de valor de distribuidores, bodegas e industrias mendocinas.
+            <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+                Flujos de Transporte de <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan via-brand-electricBlue to-blue-400">Alto Rendimiento</span>
+            </h1>
+            <p class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
+                Somos una organización joven de emprendedores tecnológicos orientada al Gran Mendoza. Fundada por <strong>Maximo Gomez Saa</strong> y <strong>Pablo Carrasco Galdame</strong>, integramos ingeniería de procesos y automatización técnica para garantizar la excelencia logística de tu mercadería.
             </p>
         </div>
+    </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <div class="glass-panel glass-card-hover p-8 rounded-2xl flex flex-col justify-between h-full">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center mb-6">
-                        <i data-lucide="package" class="text-slate-950 w-6 h-6 stroke-[2]"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-xl text-white">Distribución Industrial</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Transporte seguro y controlado de mercaderías industriales, insumos de bodega y productos de consumo masivo en todo el Gran Mendoza.
-                    </p>
-                </div>
-                <div class="pt-6">
-                    <span class="text-brand-cyan text-xs font-semibold uppercase tracking-wider font-mono">Eficiencia Garantizada</span>
-                </div>
-            </div>
+    <!-- Interactive Section: El Camino de Luces -->
+    <section id="camino" class="py-12 lg:py-20 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-10 space-y-3">
+            <h2 class="font-display font-bold text-2xl sm:text-3xl text-white">Diseña tu Envío</h2>
+            <p class="text-gray-400 text-sm">Sigue el camino interactivo de luces y describe tu proyecto en 5 pasos.</p>
+        </div>
+
+        <!-- Wizard Container -->
+        <div class="glass-panel neon-border-glow p-8 sm:p-10 rounded-3xl relative">
             
-            <!-- Card 2 -->
-            <div class="glass-panel glass-card-hover p-8 rounded-2xl flex flex-col justify-between h-full">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center mb-6">
-                        <i data-lucide="clock" class="text-slate-950 w-6 h-6 stroke-[2]"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-xl text-white">Envíos de Media Distancia</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Enlace rápido con zonas aledañas y departamentos periféricos del Gran Mendoza con tiempos de entrega rigurosamente controlados.
-                    </p>
+            <!-- Camino de Luces (Progreso Visual) -->
+            <div class="relative flex items-center justify-between mb-12">
+                <!-- Línea de Fondo Opaca -->
+                <div class="absolute h-1 w-full bg-slate-800 rounded-full left-0 top-1/2 -translate-y-1/2 -z-10"></div>
+                <!-- Línea de Progreso Activa (Neon) -->
+                <div id="progress-line" class="absolute h-1 bg-gradient-to-r from-brand-electricBlue to-brand-cyan rounded-full left-0 top-1/2 -translate-y-1/2 -z-10 transition-all duration-500 neon-line-glow" style="width: 0%;"></div>
+                
+                <!-- Nodos -->
+                <div class="step-node w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-xs font-bold text-gray-400 active" id="node-1">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i>
                 </div>
-                <div class="pt-6">
-                    <span class="text-brand-cyan text-xs font-semibold uppercase tracking-wider font-mono">Tiempos Optimizados</span>
+                <div class="step-node w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-xs font-bold text-gray-400" id="node-2">
+                    <i data-lucide="scale" class="w-4 h-4"></i>
+                </div>
+                <div class="step-node w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-xs font-bold text-gray-400" id="node-3">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <div class="step-node w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-xs font-bold text-gray-400" id="node-4">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </div>
+                <div class="step-node w-10 h-10 rounded-full bg-slate-900 border-2 border-slate-700 flex items-center justify-center text-xs font-bold text-gray-400" id="node-5">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="glass-panel glass-card-hover p-8 rounded-2xl flex flex-col justify-between h-full">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center mb-6">
-                        <i data-lucide="cpu" class="text-slate-950 w-6 h-6 stroke-[2]"></i>
+            <!-- Paso 1: Introducción y Tipo de Servicio -->
+            <div class="step-content active-step" id="step-1">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brand-cyan pl-4 py-1">
+                        <span class="text-xs text-brand-cyan uppercase tracking-wider font-mono">Paso 1 // PRESENTACIÓN</span>
+                        <h3 class="font-display font-bold text-xl text-white mt-1">Nosotros somos Bleitor y nos dedicamos a la logística integral.</h3>
                     </div>
-                    <h3 class="font-display font-bold text-xl text-white">Integración Tecnológica</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Herramientas y paneles digitales de solicitud para empresas clientes, permitiendo despachos dinámicos y notificaciones inmediatas.
+                    <p class="text-gray-400 text-sm">
+                        Para estructurar la mejor solución para ti, indícanos: ¿Estás interesado en un envío particular o una contratación de escala corporativa?
                     </p>
-                </div>
-                <div class="pt-6">
-                    <span class="text-brand-cyan text-xs font-semibold uppercase tracking-wider font-mono">Automatización Completa</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <!-- Opción Particular -->
+                        <div class="choice-card p-6 rounded-2xl cursor-pointer flex flex-col justify-between h-36" id="opt-particular" onclick="selectService('Particular')">
+                            <div class="w-10 h-10 rounded-xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan">
+                                <i data-lucide="box" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Servicio Particular</h4>
+                                <p class="text-xs text-gray-500 mt-1">Envíos puntuales, mudanzas o cargas individuales esporádicas.</p>
+                            </div>
+                        </div>
+                        <!-- Opción Contratación -->
+                        <div class="choice-card p-6 rounded-2xl cursor-pointer flex flex-col justify-between h-36" id="opt-contratacion" onclick="selectService('Contratación Corporativa')">
+                            <div class="w-10 h-10 rounded-xl bg-brand-electricBlue/10 flex items-center justify-center text-brand-electricBlue">
+                                <i data-lucide="factory" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Contratación</h4>
+                                <p class="text-xs text-gray-500 mt-1">Logística comercial recurrente, distribución industrial y de bodegas.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- Paso 2: Peso de la Carga -->
+            <div class="step-content" id="step-2">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brand-cyan pl-4 py-1">
+                        <span class="text-xs text-brand-cyan uppercase tracking-wider font-mono">Paso 2 // CAPACIDAD</span>
+                        <h3 class="font-display font-bold text-xl text-white mt-1">Clasificación de peso operativo</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Adecuamos el camión y el equipo de carga idóneo para ti. ¿Tu carga total pesa más de 200kg?
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <!-- Más de 200kg -->
+                        <div class="choice-card p-6 rounded-2xl cursor-pointer flex flex-col justify-between h-36" id="opt-peso-si" onclick="selectWeight('Sí')">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                <i data-lucide="anchor" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Sí, pesa más de 200kg</h4>
+                                <p class="text-xs text-gray-500 mt-1">Cargas pesadas, bultos industriales o paletizados complejos.</p>
+                            </div>
+                        </div>
+                        <!-- Menos de 200kg -->
+                        <div class="choice-card p-6 rounded-2xl cursor-pointer flex flex-col justify-between h-36" id="opt-peso-no" onclick="selectWeight('No')">
+                            <div class="w-10 h-10 rounded-xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan">
+                                <i data-lucide="package-open" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">No, es menor de 200kg</h4>
+                                <p class="text-xs text-gray-500 mt-1">Envíos ligeros, cajas, paquetería estándar o mensajería.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 3: Nombre del Solicitante / Empresa -->
+            <div class="step-content" id="step-3">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brand-cyan pl-4 py-1">
+                        <span class="text-xs text-brand-cyan uppercase tracking-wider font-mono">Paso 3 // REGISTRO</span>
+                        <h3 class="font-display font-bold text-xl text-white mt-1">¿A nombre de quién registramos la solicitud?</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Ingresa el nombre del solicitante o la denominación social de tu empresa para personalizar tu presupuesto.
+                    </p>
+                    <div class="pt-2 relative">
+                        <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 pointer-events-none">
+                            <i data-lucide="building-2" class="w-5 h-5"></i>
+                        </span>
+                        <input type="text" id="nombre" placeholder="Ej. Bodega Los Andes / Juan Pérez" 
+                            class="w-full pl-12 pr-4 py-4 bg-slate-950/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-cyan glow-input transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 4: Contacto (Email y Teléfono) -->
+            <div class="step-content" id="step-4">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brand-cyan pl-4 py-1">
+                        <span class="text-xs text-brand-cyan uppercase tracking-wider font-mono">Paso 4 // COMUNICACIÓN</span>
+                        <h3 class="font-display font-bold text-xl text-white mt-1">Medios de contacto preferidos</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Proporciónanos tu email y número telefónico para agilizar las respuestas del equipo técnico.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 pointer-events-none">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </span>
+                            <input type="email" id="email" placeholder="ejemplo@correo.com" 
+                                class="w-full pl-12 pr-4 py-4 bg-slate-950/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-cyan glow-input transition-all">
+                        </div>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 pointer-events-none">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </span>
+                            <input type="tel" id="telefono" placeholder="+54 9 261..." 
+                                class="w-full pl-12 pr-4 py-4 bg-slate-950/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-cyan glow-input transition-all">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 5: Detalle adicional -->
+            <div class="step-content" id="step-5">
+                <div class="space-y-6">
+                    <div class="border-l-4 border-brand-cyan pl-4 py-1">
+                        <span class="text-xs text-brand-cyan uppercase tracking-wider font-mono">Paso 5 // ESPECIFICACIONES</span>
+                        <h3 class="font-display font-bold text-xl text-white mt-1">Describe los detalles del trabajo</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Indica el punto de origen y destino, tipo de carga, fecha estimada o cualquier consideración especial de seguridad.
+                    </p>
+                    <div class="pt-2">
+                        <textarea id="descripcion" rows="4" placeholder="Ej. Carga de pallets de botellas desde Luján de Cuyo hasta Maipú. Requiero autoelevador para descarga el próximo viernes..." 
+                            class="w-full px-4 py-4 bg-slate-950/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-cyan glow-input transition-all resize-none"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="mt-10 flex items-center justify-between border-t border-slate-800/80 pt-6">
+                <!-- Botón Atrás -->
+                <button type="button" id="prev-btn" onclick="prevStep()" class="opacity-0 pointer-events-none px-6 py-3 rounded-xl border border-slate-800 hover:border-slate-700 text-gray-400 hover:text-white transition flex items-center space-x-2 text-sm font-semibold">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    <span>Atrás</span>
+                </button>
+                
+                <!-- Botón Siguiente / Enviar -->
+                <button type="button" id="next-btn" onclick="nextStep()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-electricBlue to-brand-cyan text-white hover:opacity-90 transition flex items-center space-x-2 text-sm font-bold shadow-lg shadow-brand-electricBlue/20">
+                    <span id="next-btn-text">Siguiente</span>
+                    <i data-lucide="chevron-right" id="next-btn-icon" class="w-4 h-4"></i>
+                </button>
+            </div>
+
         </div>
     </section>
 
-    <!-- Request Form Section -->
-    <section id="contacto" class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 bg-slate-950/20 border-t border-slate-900 relative">
-        <div class="max-w-4xl mx-auto">
-            
-            <div class="text-center mb-12 space-y-4">
-                <span class="text-brand-cyan text-sm font-semibold uppercase tracking-wider">Formulario de Solicitud</span>
-                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">Cotiza tu Proyecto Logístico</h2>
-                <p class="text-gray-400 max-w-xl mx-auto">
-                    Completa los detalles de tu requerimiento y nuestro sistema notificará inmediatamente a los socios fundadores para asignarte prioridad.
-                </p>
-            </div>
-
-            <!-- Form Container -->
-            <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-slate-850 shadow-2xl relative">
-                
-                <!-- Alerts -->
-                <div id="successAlert" class="hidden mb-6 p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/30 text-emerald-300 flex items-start space-x-3">
-                    <i data-lucide="check-circle" class="w-5 h-5 shrink-0 mt-0.5 text-emerald-400"></i>
-                    <div>
-                        <h4 class="font-semibold text-white">¡Solicitud Enviada con Éxito!</h4>
-                        <p class="text-sm mt-1 text-emerald-400/90">
-                            Tu pedido fue procesado. Maximo y Pablo han recibido una notificación de WhatsApp y se pondrán en contacto contigo en la brevedad.
-                        </p>
-                    </div>
-                </div>
-
-                <div id="errorAlert" class="hidden mb-6 p-4 rounded-xl bg-rose-950/50 border border-rose-500/30 text-rose-300 flex items-start space-x-3">
-                    <i data-lucide="alert-circle" class="w-5 h-5 shrink-0 mt-0.5 text-rose-400"></i>
-                    <div>
-                        <h4 class="font-semibold text-white">Error de Envío</h4>
-                        <p id="errorMessageText" class="text-sm mt-1 text-rose-450/90">
-                            Hubo un problema al procesar tu solicitud. Por favor, verifica los campos e inténtalo de nuevo.
-                        </p>
-                    </div>
-                </div>
-
-                <form id="pedidoForm" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <!-- Nombre -->
-                        <div class="space-y-2">
-                            <label for="nombre" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Nombre del Solicitante o Empresa</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500 pointer-events-none">
-                                    <i data-lucide="building" class="w-4 h-4"></i>
-                                </span>
-                                <input type="text" id="nombre" name="nombre" required placeholder="Ej. Logística Mendoza S.A." 
-                                    class="w-full pl-10 pr-4 py-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-electricBlue glow-input transition-all">
-                            </div>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="space-y-2">
-                            <label for="email" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Email de Contacto</label>
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500 pointer-events-none">
-                                    <i data-lucide="mail" class="w-4 h-4"></i>
-                                </span>
-                                <input type="email" id="email" name="email" required placeholder="ejemplo@empresa.com" 
-                                    class="w-full pl-10 pr-4 py-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-electricBlue glow-input transition-all">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Teléfono -->
-                    <div class="space-y-2">
-                        <label for="telefono" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Número de Teléfono (con código de área)</label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-gray-500 pointer-events-none">
-                                <i data-lucide="phone" class="w-4 h-4"></i>
-                            </span>
-                            <input type="tel" id="telefono" name="telefono" required placeholder="Ej. +54 9 261 472 0776" 
-                                class="w-full pl-10 pr-4 py-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-electricBlue glow-input transition-all">
-                        </div>
-                        <p class="text-xs text-gray-500 font-mono">Código de país + área. Ej: +54 9 261 XXXXXXX</p>
-                    </div>
-
-                    <!-- Detalle del Trabajo -->
-                    <div class="space-y-2">
-                        <label for="descripcion" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Descripción del Trabajo Requerido</label>
-                        <textarea id="descripcion" name="descripcion" required rows="4" placeholder="Describa la carga, rutas de origen/destino y especificaciones necesarias del servicio..."
-                            class="w-full px-4 py-3.5 bg-slate-900/80 border border-slate-800 rounded-xl text-white text-sm focus:border-brand-electricBlue glow-input transition-all resize-none"></textarea>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" id="submitBtn" class="w-full glow-button py-4 px-6 rounded-xl bg-gradient-to-r from-brand-electricBlue to-brand-cyan text-slate-950 font-bold text-sm tracking-wider uppercase flex items-center justify-center space-x-2">
-                        <span id="btnText">Enviar Solicitud</span>
-                        <div id="btnSpinner" class="hidden w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>
-                    </button>
-
-                </form>
-            </div>
-
+    <!-- Info / FAQ -->
+    <section class="max-w-4xl mx-auto px-6 pb-24 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+        <div class="glass-panel p-6 rounded-2xl border border-slate-900/60">
+            <h4 class="font-bold text-white mb-2 flex items-center space-x-2">
+                <i data-lucide="truck" class="w-4 h-4 text-brand-cyan"></i>
+                <span>Cobertura Integral</span>
+            </h4>
+            <p class="text-gray-400 leading-relaxed">
+                Operamos de manera activa en todo el Gran Mendoza (Capital, Guaymallén, Godoy Cruz, Las Heras, Luján de Cuyo y Maipú). Disponemos de equipamiento adecuado para traslados urbanos y de media distancia.
+            </p>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-slate-900/60">
+            <h4 class="font-bold text-white mb-2 flex items-center space-x-2">
+                <i data-lucide="cpu" class="w-4 h-4 text-brand-cyan"></i>
+                <span>Respuesta Ágil</span>
+            </h4>
+            <p class="text-gray-400 leading-relaxed">
+                Al finalizar el camino de luces, se generará una plantilla de mensaje preestructurado. Serás redirigido directamente al chat de WhatsApp de Pablo Carrasco (+54 9 2617 09-4195) con toda la información cargada para una cotización inmediata.
+            </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-900 py-12 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-electricBlue to-brand-cyan flex items-center justify-center">
-                    <i data-lucide="truck" class="text-slate-950 w-4 h-4"></i>
-                </div>
-                <span class="font-display font-extrabold text-lg text-white tracking-wider">BLEITOR</span>
-            </div>
-            <div class="text-xs">
-                &copy; 2026 Bleitor. Todos los derechos reservados. Gran Mendoza, Argentina.
-            </div>
+    <footer class="bg-slate-950 border-t border-slate-900/80 py-12 px-6 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <span class="font-display font-bold text-white tracking-wider">BLEITOR LOGISTICS</span>
+            <span>&copy; 2026 Bleitor. Todos los derechos reservados. Gran Mendoza, Argentina.</span>
         </div>
     </footer>
 
     <!-- Logic Script -->
     <script>
-        // ===================================================
-        // CONFIGURACIÓN DE CONEXIÓN CON EL BACKEND DE BLEITOR
-        // ===================================================
-        // Cuando despliegues tu backend en Render o Railway, cambia esta URL por la tuya de producción.
-        const PRODUCTION_BACKEND_URL = 'https://bumpy-pandas-behave.loca.lt';
-
-        // Determinar el endpoint de forma inteligente (local vs producción)
-        const getApiUrl = () => {
-            const isLocal = window.location.hostname === 'localhost' || 
-                            window.location.hostname === '127.0.5.1' || 
-                            window.location.hostname === '127.0.0.1' || 
-                            window.location.protocol === 'file:';
-            return isLocal ? 'http://localhost:3000/api/pedidos' : `${PRODUCTION_BACKEND_URL}/api/pedidos`;
-        };
-
         // Inicializar Iconos Lucide
         lucide.createIcons();
 
-        // Elementos del Menu Móvil
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        // Variables del Formulario
+        let currentStep = 1;
+        const totalSteps = 5;
+        
+        let formData = {
+            servicio: '',
+            pesoMas200: '',
+            nombre: '',
+            email: '',
+            telefono: '',
+            descripcion: ''
+        };
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Formulario de Envío
-        const form = document.getElementById('pedidoForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnSpinner = document.getElementById('btnSpinner');
-        const successAlert = document.getElementById('successAlert');
-        const errorAlert = document.getElementById('errorAlert');
-        const errorMessageText = document.getElementById('errorMessageText');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            // Resetear alertas
-            successAlert.classList.add('hidden');
-            errorAlert.classList.add('hidden');
-
-            // Obtener valores
-            const nombre = document.getElementById('nombre').value;
-            const email = document.getElementById('email').value;
-            const telefono = document.getElementById('telefono').value;
-            const descripcion = document.getElementById('descripcion').value;
-
-            // Validaciones cliente adicionales
-            if (!nombre.trim() || !email.trim() || !telefono.trim() || !descripcion.trim()) {
-                showError("Por favor, rellene todos los campos obligatorios.");
-                return;
-            }
-
-            // Cambiar estado a Procesando...
-            setLoading(true);
-
-            try {
-                const targetApiUrl = getApiUrl();
-                console.log(`Enviando solicitud a: ${targetApiUrl}`);
-
-                // Realizar POST JSON al backend dinámico
-                const response = await fetch(targetApiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ nombre, email, telefono, descripcion }),
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    // Mostrar alerta de Éxito
-                    successAlert.classList.remove('hidden');
-                    form.reset();
-                    // Scroll suave hasta el alert de éxito
-                    successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    // Mostrar error retornado del backend
-                    showError(data.error || "Ocurrió un error inesperado al procesar la solicitud.");
-                }
-            } catch (err) {
-                console.error("Error al conectar con el servidor:", err);
-                showError("No se pudo establecer conexión con el servidor de Bleitor. Verifique si el servidor está encendido o su conexión a internet.");
-            } finally {
-                setLoading(false);
-            }
-        });
-
-        function setLoading(isLoading) {
-            if (isLoading) {
-                submitBtn.disabled = true;
-                btnText.textContent = "Procesando...";
-                btnSpinner.classList.remove('hidden');
-                submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
+        // Seleccionar Tipo de Servicio (Paso 1)
+        function selectService(type) {
+            formData.servicio = type;
+            document.getElementById('opt-particular').classList.remove('selected');
+            document.getElementById('opt-contratacion').classList.remove('selected');
+            
+            if (type === 'Particular') {
+                document.getElementById('opt-particular').classList.add('selected');
             } else {
-                submitBtn.disabled = false;
-                btnText.textContent = "Enviar Solicitud";
-                btnSpinner.classList.add('hidden');
-                submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                document.getElementById('opt-contratacion').classList.add('selected');
+            }
+            
+            // Avanzar automáticamente con delay sutil para feedback visual
+            setTimeout(() => {
+                nextStep();
+            }, 300);
+        }
+
+        // Seleccionar Peso de la Carga (Paso 2)
+        function selectWeight(val) {
+            formData.pesoMas200 = val;
+            document.getElementById('opt-peso-si').classList.remove('selected');
+            document.getElementById('opt-peso-no').classList.remove('selected');
+            
+            if (val === 'Sí') {
+                document.getElementById('opt-peso-si').classList.add('selected');
+            } else {
+                document.getElementById('opt-peso-no').classList.add('selected');
+            }
+            
+            setTimeout(() => {
+                nextStep();
+            }, 300);
+        }
+
+        // Control del Camino de Luces (Progreso)
+        function updateProgress() {
+            // Actualizar la línea de progreso
+            const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+            document.getElementById('progress-line').style.width = `${percent}%`;
+            
+            // Actualizar los Nodos
+            for (let i = 1; i <= totalSteps; i++) {
+                const node = document.getElementById(`node-${i}`);
+                if (i < currentStep) {
+                    node.classList.add('completed');
+                    node.classList.remove('active');
+                } else if (i === currentStep) {
+                    node.classList.remove('completed');
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('completed', 'active');
+                }
+            }
+
+            // Actualizar la visibilidad de los contenidos de cada paso
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepElement = document.getElementById(`step-${i}`);
+                if (i === currentStep) {
+                    stepElement.classList.add('active-step');
+                } else {
+                    stepElement.classList.remove('active-step');
+                }
+            }
+
+            // Visibilidad del botón Atrás
+            const prevBtn = document.getElementById('prev-btn');
+            if (currentStep > 1) {
+                prevBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                prevBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+            // Textos del botón Siguiente / Enviar
+            const nextBtnText = document.getElementById('next-btn-text');
+            const nextBtnIcon = document.getElementById('next-btn-icon');
+            if (currentStep === totalSteps) {
+                nextBtnText.textContent = 'Enviar por WhatsApp';
+                nextBtnIcon.setAttribute('data-lucide', 'send');
+            } else {
+                nextBtnText.textContent = 'Siguiente';
+                nextBtnIcon.setAttribute('data-lucide', 'chevron-right');
+            }
+            lucide.createIcons();
+        }
+
+        // Validaciones por paso antes de avanzar
+        function validateStep() {
+            if (currentStep === 1 && !formData.servicio) {
+                alert("Por favor, selecciona un tipo de servicio para continuar.");
+                return false;
+            }
+            if (currentStep === 2 && !formData.pesoMas200) {
+                alert("Por favor, selecciona una opción de peso para continuar.");
+                return false;
+            }
+            if (currentStep === 3) {
+                const nombreVal = document.getElementById('nombre').value.trim();
+                if (!nombreVal) {
+                    alert("Por favor, ingresa tu nombre o el de tu empresa.");
+                    return false;
+                }
+                formData.nombre = nombreVal;
+            }
+            if (currentStep === 4) {
+                const emailVal = document.getElementById('email').value.trim();
+                const telefonoVal = document.getElementById('telefono').value.trim();
+                
+                if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+                    alert("Por favor, ingresa un correo electrónico válido.");
+                    return false;
+                }
+                if (!telefonoVal || telefonoVal.length < 8) {
+                    alert("Por favor, ingresa un número de teléfono válido.");
+                    return false;
+                }
+                formData.email = emailVal;
+                formData.telefono = telefonoVal;
+            }
+            if (currentStep === 5) {
+                const descVal = document.getElementById('descripcion').value.trim();
+                if (!descVal) {
+                    alert("Por favor, describe los detalles del trabajo requerido.");
+                    return false;
+                }
+                formData.descripcion = descVal;
+            }
+            return true;
+        }
+
+        // Ir al Siguiente Paso
+        function nextStep() {
+            if (!validateStep()) return;
+            
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateProgress();
+            } else {
+                // Si estamos en el último paso, enviar a WhatsApp
+                sendToWhatsApp();
             }
         }
 
-        function showError(message) {
-            errorMessageText.textContent = message;
-            errorAlert.classList.remove('hidden');
-            errorAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Ir al Paso Anterior
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateProgress();
+            }
         }
-    </script>
 
+        // Construcción del Mensaje y Redirección a WhatsApp
+        function sendToWhatsApp() {
+            // Número destino
+            const targetPhone = '5492617094195'; 
+            
+            // Obtener fecha y hora local de Mendoza
+            const formatOptions = {
+                timeZone: 'America/Argentina/Mendoza',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            };
+            const formatter = new Intl.DateTimeFormat('es-AR', formatOptions);
+            const fechaHora = formatter.format(new Date());
+
+            // Construir el mensaje preestructurado con emojis y formato negrita de WhatsApp
+            const message = `🚨 *NUEVO PEDIDO EN BLEITOR* 🚨
+
+👤 *Cliente:* ${formData.nombre}
+📧 *Email:* ${formData.email}
+📞 *Teléfono:* ${formData.telefono}
+
+💼 *Servicio:* ${formData.servicio}
+⚖️ *Carga > 200kg:* ${formData.pesoMas200}
+
+📝 *Detalle del Trabajo:*
+${formData.descripcion}
+
+📅 *Fecha:* ${fechaHora}`;
+
+            // Codificar el texto para URL
+            const encodedText = encodeURIComponent(message);
+            
+            // Crear link de WhatsApp
+            const waUrl = `https://wa.me/${targetPhone}?text=${encodedText}`;
+            
+            // Redirigir al usuario en una pestaña nueva
+            window.open(waUrl, '_blank');
+        }
+
+        // Inicializar el camino en el paso 1
+        updateProgress();
+    </script>
 </body>
 </html>
