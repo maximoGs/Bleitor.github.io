@@ -435,6 +435,21 @@
 
     <!-- Logic Script -->
     <script>
+        // ===================================================
+        // CONFIGURACIÓN DE CONEXIÓN CON EL BACKEND DE BLEITOR
+        // ===================================================
+        // Cuando despliegues tu backend en Render o Railway, cambia esta URL por la tuya de producción.
+        const PRODUCTION_BACKEND_URL = 'https://bleitor-backend.onrender.com';
+
+        // Determinar el endpoint de forma inteligente (local vs producción)
+        const getApiUrl = () => {
+            const isLocal = window.location.hostname === 'localhost' || 
+                            window.location.hostname === '127.0.5.1' || 
+                            window.location.hostname === '127.0.0.1' || 
+                            window.location.protocol === 'file:';
+            return isLocal ? 'http://localhost:3000/api/pedidos' : `${PRODUCTION_BACKEND_URL}/api/pedidos`;
+        };
+
         // Inicializar Iconos Lucide
         lucide.createIcons();
 
@@ -478,9 +493,11 @@
             setLoading(true);
 
             try {
-                // Realizar POST JSON al backend (en producción apunta al dominio de Render/Railway, en local es relativo /api/pedidos)
-                // Se utiliza URL relativa para soportar despliegues donde el backend sirve el frontend.
-                const response = await fetch('/api/pedidos', {
+                const targetApiUrl = getApiUrl();
+                console.log(`Enviando solicitud a: ${targetApiUrl}`);
+
+                // Realizar POST JSON al backend dinámico
+                const response = await fetch(targetApiUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
